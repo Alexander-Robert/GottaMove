@@ -114,7 +114,7 @@ public class ImprovedMovement : Movement
             rb.gravityScale = 3;
         }
 
-        if(coll.onWall && !coll.onGround)
+        if(coll.onWall && !coll.onGround && rb.velocity.y <= 0)
         {
             if (x != 0 && !wallGrab)
             {
