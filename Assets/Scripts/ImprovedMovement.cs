@@ -15,9 +15,11 @@ public class ImprovedMovement : MonoBehaviour
     [Header("Stats")]
     public float speed = 10;
     public float jumpForce = 50;
+    public float coyoteTime = 4;
     public float slideSpeed = 5;
     public float wallJumpLerp = 10;
     public float dashSpeed = 20;
+    public float dashDelay = 0.1f;
     public double jumpBuffer = 0;
     public double jumpBufferMax = 0.3;
     public double climbStamina = 5;
@@ -267,7 +269,7 @@ public class ImprovedMovement : MonoBehaviour
         isDashing = true;
 
         //adjusted the amount of time player cannot move after a dash
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(dashDelay);
 
         dashParticle.Stop();
         rb.gravityScale = 3;
@@ -392,7 +394,7 @@ public class ImprovedMovement : MonoBehaviour
 
     //Coyote Time Delay Function
     IEnumerator CoyoteTime(){
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(coyoteTime);
         canJumpFromGround = false;
     }
 }
