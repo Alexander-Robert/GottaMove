@@ -35,6 +35,7 @@ public class ImprovedMovement : Movement
 
     private bool groundTouch;
     private bool hasDashed;
+    private bool canJumpFromGround;
 
     public int side = 1;
 
@@ -128,6 +129,13 @@ public class ImprovedMovement : Movement
             wallSlide = false;
             climbStamina = climbStaminaMax;
         }
+        
+        // Coyote Time Delay
+        if(coll.onGround){
+            canJumpFromGround = true;
+        } else {
+            StartCoroutine(CoyoteTime());
+        }
 
         if (Input.GetButtonDown("Jump")) {
             jumpBuffer = jumpBufferMax;
@@ -139,7 +147,7 @@ public class ImprovedMovement : Movement
 
             anim.SetTrigger("jump");
 
-            if (coll.onGround) {
+            if (canJumpFromGround) {
                 jumpBuffer = 0;
                 Jump(Vector2.up, false);
             }
@@ -227,7 +235,8 @@ public class ImprovedMovement : Movement
         wallJumped = true;
         isDashing = true;
 
-        yield return new WaitForSeconds(.3f);
+        //adjusted the amount of time player cannot move after a dash
+        yield return new WaitForSeconds(.1f);
 
         dashParticle.Stop();
         rb.gravityScale = 3;
@@ -346,5 +355,11 @@ public class ImprovedMovement : Movement
         //set the sprite's color to the given color
         var sprite = anim.GetComponent<SpriteRenderer>();
         sprite.color = c;
+    }
+
+    //Coyote Time Delay Function
+    IEnumerator CoyoteTime(){
+        yield return new WaitForSeconds(4f);
+        canJumpFromGround = false;
     }
 }
