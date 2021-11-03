@@ -6,7 +6,8 @@ public class AnimationScript : MonoBehaviour
 {
 
     private Animator anim;
-    private Movement move;
+    private BaseMovement baseMove;
+    private ImprovedMovement improveMove;
     private Collision coll;
     [HideInInspector]
     public SpriteRenderer sr;
@@ -15,7 +16,8 @@ public class AnimationScript : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         coll = GetComponentInParent<Collision>();
-        move = GetComponentInParent<Movement>();
+        baseMove = GetComponentInParent<BaseMovement>();
+        improveMove = GetComponentInParent<ImprovedMovement>();
         sr = GetComponent<SpriteRenderer>();
     }
 
@@ -24,10 +26,18 @@ public class AnimationScript : MonoBehaviour
         anim.SetBool("onGround", coll.onGround);
         anim.SetBool("onWall", coll.onWall);
         anim.SetBool("onRightWall", coll.onRightWall);
-        anim.SetBool("wallGrab", move.wallGrab);
-        anim.SetBool("wallSlide", move.wallSlide);
-        anim.SetBool("canMove", move.canMove);
-        anim.SetBool("isDashing", move.isDashing);
+        if(baseMove.enabled){
+            anim.SetBool("wallGrab", baseMove.wallGrab);
+            anim.SetBool("wallSlide", baseMove.wallSlide);
+            anim.SetBool("canMove", baseMove.canMove);
+            anim.SetBool("isDashing", baseMove.isDashing);
+        } else {
+            anim.SetBool("wallGrab", improveMove.wallGrab);
+            anim.SetBool("wallSlide", improveMove.wallSlide);
+            anim.SetBool("canMove", improveMove.canMove);
+            anim.SetBool("isDashing", improveMove.isDashing);
+        }
+        
 
     }
 
@@ -46,7 +56,7 @@ public class AnimationScript : MonoBehaviour
     public void Flip(int side)
     {
 
-        if (move.wallGrab || move.wallSlide)
+        if (baseMove.wallGrab || baseMove.wallSlide || improveMove.wallGrab || improveMove.wallSlide)
         {
             if (side == -1 && sr.flipX)
                 return;

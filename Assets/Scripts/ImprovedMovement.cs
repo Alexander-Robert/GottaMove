@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class ImprovedMovement : Movement
+public class ImprovedMovement : MonoBehaviour
 {
     private Collision coll;
     [HideInInspector]
@@ -28,11 +28,11 @@ public class ImprovedMovement : Movement
 
     [Space]
     [Header("Booleans")]
-    // public bool canMove;
-    // public bool wallGrab;
-    // public bool wallJumped;
-    // public bool wallSlide;
-    // public bool isDashing;
+    public bool canMove;
+    public bool wallGrab;
+    public bool wallJumped;
+    public bool wallSlide;
+    public bool isDashing;
 
     [Space]
 
