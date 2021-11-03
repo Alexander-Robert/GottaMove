@@ -22,6 +22,9 @@ public class ImprovedMovement : Movement
     public double jumpBufferMax = 0.3;
     public double climbStamina = 5;
     public double climbStaminaMax = 5;
+    float xVelocity = 0.0f;
+    public float acceleration = 4.6f;
+    public float deceleration = 5.2f;
 
     [Space]
     [Header("Booleans")]
@@ -64,10 +67,37 @@ public class ImprovedMovement : Movement
         float y = Input.GetAxis("Vertical");
         float xRaw = Input.GetAxisRaw("Horizontal");
         float yRaw = Input.GetAxisRaw("Vertical");
-        Vector2 dir = new Vector2(x, y);
+
+        // Velocity changes based on acceleration and deceleration times
+        // Accelerate in the positive x direction
+        if (xRaw > 0 && xVelocity < 1) {
+            if (xVelocity < 0) {
+                xVelocity = 0;
+            }
+            xVelocity += Time.deltaTime * acceleration;
+        // Accelerate in the negative x direction
+        } else if(xRaw < 0 && xVelocity > -1) {
+            if (xVelocity > 0) {
+                xVelocity = 0;
+            }
+            xVelocity += -1 * (Time.deltaTime * acceleration);
+        // Deceleration while going in the positive x direction
+        } else if (xRaw == 0 && xVelocity > 0) {
+            xVelocity -= Time.deltaTime * deceleration;
+            if (xVelocity < 0) {
+                xVelocity = 0;
+            }
+        // Deceleration while going in the negative x direction
+        } else if (xRaw == 0 && xVelocity < 0) {
+            xVelocity += Time.deltaTime * deceleration;
+            if (xVelocity > 0) {
+                xVelocity = 0;
+            }
+        }
+        Vector2 dir = new Vector2(xVelocity, y);
 
         Walk(dir);
-        anim.SetHorizontalMovement(x, y, rb.velocity.y);
+        anim.SetHorizontalMovement(xVelocity, y, rb.velocity.y);
 
         if (coll.onWall && Input.GetButton("Fire3") && canMove)
         {
@@ -198,6 +228,7 @@ public class ImprovedMovement : Movement
 
     private void Dash(float x, float y)
     {
+        SoundManagerScript.PlaySound ("dashpulse");
         Camera.main.transform.DOComplete();
         Camera.main.transform.DOShakePosition(.2f, .5f, 14, 90, false, true);
         FindObjectOfType<RippleEffect>().Emit(Camera.main.WorldToViewportPoint(transform.position));
@@ -259,6 +290,7 @@ public class ImprovedMovement : Movement
         Jump((Vector2.up / 1.5f + wallDir / 1.5f), true);
 
         wallJumped = true;
+        SoundManagerScript.PlaySound ("jump");
     }
 
     private void WallSlide()
@@ -300,6 +332,7 @@ public class ImprovedMovement : Movement
 
     private void Jump(Vector2 dir, bool wall)
     {
+        SoundManagerScript.PlaySound ("jump");
         slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
         ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
 
