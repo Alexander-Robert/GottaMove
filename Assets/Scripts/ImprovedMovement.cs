@@ -227,7 +227,7 @@ public class ImprovedMovement : MonoBehaviour
     void GroundTouch()
     {
         hasDashed = false;
-        isDashing = false;
+        //isDashing = false;
 
         side = anim.sr.flipX ? -1 : 1;
 
@@ -347,8 +347,30 @@ public class ImprovedMovement : MonoBehaviour
         slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
         ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
 
-        rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.velocity += dir * jumpForce;
+        if(wall){
+            if(isDashing && !wallSlide){
+                rb.velocity = new Vector2(0, (dashSpeed * 0.6f));
+                rb.velocity += dir * jumpForce;
+            } else {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+                rb.velocity += dir * jumpForce;
+            }
+        } else {
+            if(isDashing){
+                if(side == -1){
+                    rb.velocity = new Vector2(-dashSpeed, 0);
+                } else {
+                    rb.velocity = new Vector2(dashSpeed, 0);
+                }
+            
+                rb.velocity += dir * jumpForce;
+            } else {
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+                rb.velocity += dir * jumpForce;
+            }
+        }
+        
+        
 
         particle.Play();
     }
