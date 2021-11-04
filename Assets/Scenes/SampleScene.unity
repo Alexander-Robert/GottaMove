@@ -5023,9 +5023,11 @@ MonoBehaviour:
   rb: {fileID: 0}
   speed: 7
   jumpForce: 12
+  coyoteTime: 0.09
   slideSpeed: 1
   wallJumpLerp: 8
   dashSpeed: 40
+  dashDelay: 0.2
   jumpBuffer: 0
   jumpBufferMax: 0.5
   climbStamina: 5
@@ -5037,6 +5039,7 @@ MonoBehaviour:
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
+  canJumpFromGround: 0
   side: 1
   dashParticle: {fileID: 786101203}
   jumpParticle: {fileID: 708599380}

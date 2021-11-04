@@ -35,12 +35,12 @@ public class ImprovedMovement : MonoBehaviour
     public bool wallJumped;
     public bool wallSlide;
     public bool isDashing;
+    public bool canJumpFromGround;
 
     [Space]
-
     private bool groundTouch;
     private bool hasDashed;
-    private bool canJumpFromGround;
+    
 
     public int side = 1;
 
