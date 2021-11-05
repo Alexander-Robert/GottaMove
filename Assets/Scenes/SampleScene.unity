@@ -5518,7 +5518,7 @@ MonoBehaviour:
   jumpForce: 14
   coyoteTime: 0.09
   slideSpeed: 2.5
-  wallJumpLerp: 9
+  wallJumpLerp: 6.7
   dashSpeed: 60
   dashDelay: 0.45
   jumpBuffer: 0
