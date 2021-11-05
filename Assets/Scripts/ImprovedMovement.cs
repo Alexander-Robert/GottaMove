@@ -24,6 +24,9 @@ public class ImprovedMovement : MonoBehaviour
     public double jumpBufferMax = 0.3;
     public double climbStamina = 5;
     public double climbStaminaMax = 5;
+    public float climbSpeed = 10;
+    public float maxClimbSpeed = 10;
+
     float xVelocity = 0.0f;
     public float acceleration = 4.6f;
     public float deceleration = 5.2f;
@@ -108,6 +111,7 @@ public class ImprovedMovement : MonoBehaviour
                 anim.Flip(side*-1);
             
             climbStamina -= 1 * Time.deltaTime;
+            climbSpeed -= 1 * Time.deltaTime;
 
             float climbPercentLeft = ((float)(climbStamina) / (float)climbStaminaMax);
             setPlayerColor(new Color(1, climbPercentLeft, climbPercentLeft, 1));
@@ -144,6 +148,7 @@ public class ImprovedMovement : MonoBehaviour
             float speedModifier = y > 0 ? .5f : 1;
 
             rb.velocity = new Vector2(rb.velocity.x, y * (speed * speedModifier));
+            rb.velocity = new Vector2(rb.velocity.x, y * (climbSpeed * speedModifier));
         }
         else
         {
@@ -162,6 +167,7 @@ public class ImprovedMovement : MonoBehaviour
         if (!coll.onWall || coll.onGround) {
             wallSlide = false;
             climbStamina = climbStaminaMax;
+            climbSpeed = maxClimbSpeed;
         }
         
         // Coyote Time Delay

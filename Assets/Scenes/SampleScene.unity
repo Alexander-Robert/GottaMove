@@ -5032,6 +5032,8 @@ MonoBehaviour:
   jumpBufferMax: 0.5
   climbStamina: 5
   climbStaminaMax: 5
+  climbSpeed: 7
+  maxClimbSpeed: 7
   acceleration: 4.6
   deceleration: 5.2
   canMove: 1
