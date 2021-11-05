@@ -5516,14 +5516,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 8
-  jumpForce: 18
+  jumpForce: 14
   coyoteTime: 0.09
-  slideSpeed: 1
+  slideSpeed: 2.5
   wallJumpLerp: 9
-  dashSpeed: 45
-  dashDelay: 0.2
+  dashSpeed: 60
+  dashDelay: 0.45
   jumpBuffer: 0
-  jumpBufferMax: 0.5
+  jumpBufferMax: 0.375
   climbStamina: 5
   climbStaminaMax: 5
   climbSpeed: 5
