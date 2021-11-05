@@ -25,8 +25,8 @@ public class ImprovedMovement : MonoBehaviour
     public double climbStamina = 5;
     public double climbStaminaMax = 5;
     float xVelocity = 0.0f;
-    public float acceleration = 4.6f;
-    public float deceleration = 5.2f;
+    public float acceleration = 7f;
+    public float deceleration = 7.25f;
 
     [Space]
     [Header("Booleans")]
