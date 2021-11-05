@@ -355,7 +355,7 @@ public class ImprovedMovement : MonoBehaviour
                 rb.velocity += dir * jumpForce;
             } else {
                 rb.velocity = new Vector2(rb.velocity.x, 0);
-                rb.velocity += dir * jumpForce;
+                rb.velocity += dir * (jumpForce - 3);
             }
         } else {
             if(isDashing){

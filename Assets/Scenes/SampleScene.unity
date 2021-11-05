@@ -5021,11 +5021,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 7
+  speed: 8
   jumpForce: 12
   coyoteTime: 0.09
   slideSpeed: 1
-  wallJumpLerp: 8
+  wallJumpLerp: 9
   dashSpeed: 40
   dashDelay: 0.2
   jumpBuffer: 0
