@@ -28,8 +28,8 @@ public class ImprovedMovement : MonoBehaviour
     public float maxClimbSpeed = 10;
 
     float xVelocity = 0.0f;
-    public float acceleration = 4.6f;
-    public float deceleration = 5.2f;
+    public float acceleration = 7f;
+    public float deceleration = 7.25f;
 
     [Space]
     [Header("Booleans")]
@@ -361,7 +361,7 @@ public class ImprovedMovement : MonoBehaviour
                 rb.velocity += dir * jumpForce;
             } else {
                 rb.velocity = new Vector2(rb.velocity.x, 0);
-                rb.velocity += dir * jumpForce;
+                rb.velocity += dir * (jumpForce - 3);
             }
         } else {
             if(isDashing){

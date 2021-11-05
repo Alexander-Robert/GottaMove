@@ -5021,21 +5021,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 7
+  speed: 8
   jumpForce: 12
   coyoteTime: 0.09
   slideSpeed: 1
-  wallJumpLerp: 8
+  wallJumpLerp: 9
   dashSpeed: 40
   dashDelay: 0.2
   jumpBuffer: 0
   jumpBufferMax: 0.5
   climbStamina: 5
   climbStaminaMax: 5
+<<<<<<< HEAD
   climbSpeed: 7
   maxClimbSpeed: 7
   acceleration: 4.6
   deceleration: 5.2
+=======
+  acceleration: 7
+  deceleration: 7.25
+>>>>>>> f0e518c0377d496739e6fa729b05675d2509742f
   canMove: 1
   wallGrab: 0
   wallJumped: 0
