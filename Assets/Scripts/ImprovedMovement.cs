@@ -64,6 +64,7 @@ public class ImprovedMovement : MonoBehaviour
         coll = GetComponent<Collision>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<AnimationScript>();
+        SoundManagerScript.PlaySound ("Snow");
     }
 
     // Update is called once per frame
@@ -347,6 +348,7 @@ public class ImprovedMovement : MonoBehaviour
         {
             rb.velocity = Vector2.Lerp(rb.velocity, (new Vector2(dir.x * speed, rb.velocity.y)), wallJumpLerp * Time.deltaTime);
         }
+        // SoundManagerScript.PlaySound ("Walk");
     }
 
     private void Jump(Vector2 dir, bool wall)
