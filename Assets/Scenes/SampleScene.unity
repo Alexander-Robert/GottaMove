@@ -5519,8 +5519,8 @@ MonoBehaviour:
   coyoteTime: 0.09
   slideSpeed: 2.5
   wallJumpLerp: 6.7
-  dashSpeed: 60
-  dashDelay: 0.45
+  dashSpeed: 45
+  dashDelay: 0.3
   jumpBuffer: 0
   jumpBufferMax: 0.375
   climbStamina: 5
