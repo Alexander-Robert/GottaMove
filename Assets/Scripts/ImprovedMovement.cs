@@ -123,9 +123,6 @@ public class ImprovedMovement : MonoBehaviour
         if(climbStamina <= 0) {
             wallGrab = false;
         }
-        // if(climbStamina <= 1.5) {
-        //     setPlayerColor(red);
-        // }
 
         if (Input.GetButtonUp("Fire3") || !coll.onWall || !canMove)
         {
@@ -167,8 +164,6 @@ public class ImprovedMovement : MonoBehaviour
 
         if (!coll.onWall || coll.onGround) {
             wallSlide = false;
-            climbStamina = climbStaminaMax;
-            climbSpeed = maxClimbSpeed;
         }
         
         // Coyote Time Delay
@@ -208,6 +203,13 @@ public class ImprovedMovement : MonoBehaviour
         {
             GroundTouch();
             groundTouch = true;
+            
+            climbStamina = climbStaminaMax;
+            climbSpeed = maxClimbSpeed;
+        }
+
+        if(coll.onGround && !isDashing) {
+            setPlayerColor(white);
         }
 
         if(!coll.onGround && groundTouch)
@@ -363,7 +365,7 @@ public class ImprovedMovement : MonoBehaviour
                 rb.velocity += dir * jumpForce;
             } else {
                 rb.velocity = new Vector2(rb.velocity.x, 0);
-                rb.velocity += dir * (jumpForce - 3);
+                rb.velocity += dir * (jumpForce);
             }
         } else {
             if(isDashing){
