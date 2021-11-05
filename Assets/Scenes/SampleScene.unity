@@ -5032,15 +5032,10 @@ MonoBehaviour:
   jumpBufferMax: 0.5
   climbStamina: 5
   climbStaminaMax: 5
-<<<<<<< HEAD
   climbSpeed: 7
   maxClimbSpeed: 7
   acceleration: 4.6
   deceleration: 5.2
-=======
-  acceleration: 7
-  deceleration: 7.25
->>>>>>> f0e518c0377d496739e6fa729b05675d2509742f
   canMove: 1
   wallGrab: 0
   wallJumped: 0
