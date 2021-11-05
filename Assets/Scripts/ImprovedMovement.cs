@@ -102,12 +102,15 @@ public class ImprovedMovement : MonoBehaviour
         Walk(dir);
         anim.SetHorizontalMovement(xVelocity, y, rb.velocity.y);
 
-        if (coll.onWall && Input.GetButton("Fire3") && canMove)
+        if (coll.onWall && Input.GetButton("Fire3") && canMove && climbStamina > 0)
         {
             if(side != coll.wallSide)
                 anim.Flip(side*-1);
             
             climbStamina -= 1 * Time.deltaTime;
+
+            float climbPercentLeft = ((float)(climbStamina) / (float)climbStaminaMax);
+            setPlayerColor(new Color(1, climbPercentLeft, climbPercentLeft, 1));
             wallGrab = true;
             wallSlide = false;
         }
@@ -115,9 +118,9 @@ public class ImprovedMovement : MonoBehaviour
         if(climbStamina <= 0) {
             wallGrab = false;
         }
-        if(climbStamina <= 1.5) {
-            setPlayerColor(red);
-        } 
+        // if(climbStamina <= 1.5) {
+        //     setPlayerColor(red);
+        // }
 
         if (Input.GetButtonUp("Fire3") || !coll.onWall || !canMove)
         {
@@ -151,7 +154,6 @@ public class ImprovedMovement : MonoBehaviour
         {
             if (x != 0 && !wallGrab)
             {
-                //TODO: replace next two lines with wall climb logic and only call these lines once the climbStamina == 0
                 wallSlide = true;
                 WallSlide();
             }
