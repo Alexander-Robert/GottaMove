@@ -5515,7 +5515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 8
-  jumpForce: 14
+  jumpForce: 15.2
   coyoteTime: 0.09
   slideSpeed: 2.5
   wallJumpLerp: 6.7

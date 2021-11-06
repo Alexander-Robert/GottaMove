@@ -78,15 +78,9 @@ public class ImprovedMovement : MonoBehaviour
         // Velocity changes based on acceleration and deceleration times
         // Accelerate in the positive x direction
         if (xRaw > 0 && xVelocity < 1) {
-            if (xVelocity < 0) {
-                xVelocity = 0;
-            }
             xVelocity += Time.deltaTime * acceleration;
         // Accelerate in the negative x direction
         } else if(xRaw < 0 && xVelocity > -1) {
-            if (xVelocity > 0) {
-                xVelocity = 0;
-            }
             xVelocity += -1 * (Time.deltaTime * acceleration);
         // Deceleration while going in the positive x direction
         } else if (xRaw == 0 && xVelocity > 0) {
@@ -150,7 +144,7 @@ public class ImprovedMovement : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 3;
+            rb.gravityScale = 2.7f;
         }
 
         if(coll.onWall && !coll.onGround && rb.velocity.y <= 0)
